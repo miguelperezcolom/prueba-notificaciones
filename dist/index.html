@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- sdk -->
+    <script>
+
+        function requestPermission() {
+            console.log('Requesting permission...');
+            Notification.requestPermission().then((permission) => {
+                if (permission === 'granted') {
+                    console.log('Notification permission granted.');
+                }
+            });
+        }
+
+    </script>
+
+</head>
+<body>
+
+    <button onclick="requestPermission()">Pedir permiso</button>
+
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
+        import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-messaging.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAYL6leV3jatbvruznF4oeQiRdfKLCoTcs",
+            authDomain: "demo1-2009e.firebaseapp.com",
+            projectId: "demo1-2009e",
+            storageBucket: "demo1-2009e.appspot.com",
+            messagingSenderId: "714116773326",
+            appId: "1:714116773326:web:b8bd53ba4a54d2c889679f",
+            measurementId: "G-Q8RV886BL3"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        // Initialize Firebase Cloud Messaging and get a reference to the service
+        const messaging = getMessaging(app);
+        // Add the public key generated from the console here.
+        //getToken(messaging, {vapidKey: "BGVoGd9MNzhlSADscWhsh18ijPsNEZDHLwPyhh2WQfLDqa7KBfkJW1Cw3TiGaeHoZtliHgJT8N3G6cIcKdhYe30"});
+        getToken(messaging, { vapidKey: 'BGVoGd9MNzhlSADscWhsh18ijPsNEZDHLwPyhh2WQfLDqa7KBfkJW1Cw3TiGaeHoZtliHgJT8N3G6cIcKdhYe30' }).then((currentToken) => {
+            console.log(currentToken);
+            if (currentToken) {
+                // Send the token to your server and update the UI if necessary
+                // ...
+            } else {
+                // Show permission request UI
+                console.log('No registration token available. Request permission to generate one.');
+                // ...
+            }
+        }).catch((err) => {
+            console.log('An error occurred while retrieving token. ', err);
+            // ...
+        });
+
+    </script>
+</body>
+</html>
