@@ -27,7 +27,7 @@ messaging.onBackgroundMessage(function(payload) {
 self.addEventListener('notificationclick', function(event) {
     console.log('click en mensaje recibido', event);
     let url = event.notification.data.url;
-    event.notification.close();
+    //event.notification.close();
     event.waitUntil(
         clients.matchAll({type: 'window'}).then( windowClients => {
 // Check if there is already a window/tab open with the target URL
