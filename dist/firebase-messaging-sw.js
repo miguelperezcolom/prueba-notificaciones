@@ -15,6 +15,7 @@ const messaging = firebase.messaging();
 messaging.usePublicVapidKey('BGVoGd9MNzhlSADscWhsh18ijPsNEZDHLwPyhh2WQfLDqa7KBfkJW1Cw3TiGaeHoZtliHgJT8N3G6cIcKdhYe30');
 messaging.onBackgroundMessage(function(payload) {
     console.log('mensaje recibido', payload);
+    /*
     const notificationTitle = payload.data.title;
     const notificationOptions = {
         body: payload.data.message,
@@ -22,6 +23,7 @@ messaging.onBackgroundMessage(function(payload) {
         data: { url:payload.data.url }, //the url which we gonna use later
     };
     return self.registration.showNotification(notificationTitle,notificationOptions);
+     */
 });
 //Code for adding event on click of notification
 self.addEventListener('notificationclick', function(event) {
